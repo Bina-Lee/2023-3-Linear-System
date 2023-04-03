@@ -1,4 +1,4 @@
-function b=gause_jordan_elimination(A,b)
+function b=gauss_jordan_elimination(A,b)
 n = length(b);
 for i=1:n
     b(i)=b(i)/A(i,i);

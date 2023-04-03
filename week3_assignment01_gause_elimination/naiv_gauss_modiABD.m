@@ -1,11 +1,9 @@
-function x = naiv_gauss_modiAB(A,b)
+function x = naiv_gauss_modiABD(A,b)
 n = length(b); x = zeros(n,1);
-for k=1:n-1 % forward elimination
-    for i=k+1:n
-        for j=k+1:n
-            A(i,j) = A(i,j)-A(k,j)*A(i,k)/A(k,k);
-        end
-    b(i) = b(i)-b(k)*A(i,k)/A(k,k);
+for i=1:n-1 % forward elimination
+    for j=i+1:n
+        b(j) = b(j)-b(i)*A(j,i)/A(i,i);
+        A(j,:)=A(j,:)-A(i,:)*A(j,i)/A(i,i);
     end
 end %modi (xmult)
 % back substitution
@@ -17,3 +15,4 @@ for i=n-1:-1:1
     end
     x(i) = x(i)/A(i,i);
 end %modi (sum) to (x(i))
+end
